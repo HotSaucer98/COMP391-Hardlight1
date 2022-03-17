@@ -83,6 +83,11 @@ public class PlayerControl : MonoBehaviour
             isJumping = false;
             animator.SetBool("Jump", false);
         }
+
+        else if(collision.gameObject.tag == "Spike")
+        {
+            Application.LoadLevel("HardlightLevel1");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -93,5 +98,7 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("Jump", true);
         }
     }
+
+    
 
 }
