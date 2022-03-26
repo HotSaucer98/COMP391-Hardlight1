@@ -30,4 +30,14 @@ public class Platforms : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, nextTarget, speed * Time.deltaTime);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        collision.transform.SetParent(transform);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) 
+    {
+        collision.transform.SetParent(null);
+    }
 }
