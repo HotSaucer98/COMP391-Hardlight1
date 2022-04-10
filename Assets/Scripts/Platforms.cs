@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Platforms : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed = 4.0f;
     public Transform target1, target2;
 
     Vector3 nextTarget;
@@ -34,6 +34,11 @@ public class Platforms : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) 
     {
         collision.transform.SetParent(transform);
+
+        if(collision.gameObject.tag == "Platform")
+        {
+            speed = 0f;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision) 

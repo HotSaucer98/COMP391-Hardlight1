@@ -32,7 +32,7 @@ public class PlayerControl : MonoBehaviour
         horizontalMov = Input.GetAxisRaw("Horizontal") * speed;
         verticalMov = Input.GetAxisRaw("Vertical") * speed;
 
-        animator.SetFloat("Speed", horizontalMov);
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMov));
         animator.SetBool("Jump", false);
 
         if (verticalMov > 0f)
@@ -88,6 +88,7 @@ public class PlayerControl : MonoBehaviour
         {
             Application.LoadLevel("HardlightLevel1");
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -97,6 +98,8 @@ public class PlayerControl : MonoBehaviour
             isJumping = true;
             animator.SetBool("Jump", true);
         }
+
+       
     }
 
     
