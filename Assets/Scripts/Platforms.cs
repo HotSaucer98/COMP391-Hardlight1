@@ -35,14 +35,18 @@ public class Platforms : MonoBehaviour
     {
         collision.transform.SetParent(transform);
 
-        if(collision.gameObject.tag == "Platform")
-        {
-            speed = 0f;
-        }
     }
 
     private void OnCollisionExit2D(Collision2D collision) 
     {
         collision.transform.SetParent(null);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            speed = 0f;
+        }
     }
 }
