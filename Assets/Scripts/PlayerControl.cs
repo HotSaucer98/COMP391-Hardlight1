@@ -86,7 +86,8 @@ public class PlayerControl : MonoBehaviour
 
         else if(collision.gameObject.tag == "Spike")
         {
-            Application.LoadLevel("HardlightLevel1");
+            FindObjectOfType<GameOverScreen>().GameOver();
+           
         }
 
     }

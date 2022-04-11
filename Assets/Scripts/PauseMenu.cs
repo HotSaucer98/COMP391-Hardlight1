@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,12 +15,12 @@ public class PauseMenu : MonoBehaviour
 
             if (GameIsPaused)
             {
-                Debug.Log("Resuming");
+                
                 Resume();
             }
             else
             {
-                Debug.Log("Pausing");
+                
                 Pause();
             }
         }
