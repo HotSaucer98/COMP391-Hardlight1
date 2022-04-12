@@ -9,6 +9,7 @@ public class PlatformControler : MonoBehaviour
     private float normalSpeed;
     private bool PlayerInRange = false;
     private bool isActive = false;
+    public GameObject crystalHolder;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +37,14 @@ public class PlatformControler : MonoBehaviour
         platform.speed = 4;
 
         isActive = true;
+        crystalHolder.GetComponent<SpriteRenderer>().sprite = crystalHolder.GetComponent<SpriteRenderer>().sprite; 
     }
 
     public void Deactivate()
     {
         isActive = false;
         platform.speed = 0;
+        crystalHolder.SetActive(false);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +53,7 @@ public class PlatformControler : MonoBehaviour
         {
             PlayerInRange = true;
             Debug.Log(PlayerInRange);
+            collision.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
     
@@ -59,6 +63,7 @@ public class PlatformControler : MonoBehaviour
         {
             PlayerInRange = false;
             Debug.Log(PlayerInRange);
+            collision.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 

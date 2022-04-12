@@ -6,9 +6,12 @@ public class PlatformSwitchDualController : MonoBehaviour
 {
     public Platforms platform;
     private float normalSpeed;
+    public string crystalColor1 = "Red";
+    public string crystalColor2 = "Blue";
     private bool PlayerInRange = false;
     private int counter = 0;
     private bool isActive = false;
+    public GameObject crystalHolder;
     public PlatformSwitchDualController Otherswitch;
 
     // Start is called before the first frame update
@@ -23,15 +26,15 @@ public class PlatformSwitchDualController : MonoBehaviour
     {
         if (PlayerInRange)
         {
-            if (Input.GetKeyDown(KeyCode.E) && isActive == false)
+            if (isActive == false)
             {
                 Activate();
             }
-            else if (Input.GetKeyDown(KeyCode.E) && isActive == true)
-            {
-                Deactivate();
-                isActive = false;
-            }
+
+        }
+        else if (!PlayerInRange)
+        {
+            Deactivate();
         }
     }
 
@@ -39,32 +42,41 @@ public class PlatformSwitchDualController : MonoBehaviour
     {
         if (Otherswitch.isActive == true)
         {
-            platform.speed = 4f;
+            platform.speed = 2.5f;
         }
 
-        isActive = true;
-       
     }
 
     public void Deactivate()
     {
+        isActive = false;
         platform.speed = 0;
-
+        //crystalHolder.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Box"))
         {
             PlayerInRange = true;
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+            crystalHolder.GetComponent<SpriteRenderer>().sprite = collision.GetComponent<SpriteRenderer>().sprite;
+        }
+        if (collision.name.Equals(crystalColor2))
+        {
+            isActive = true;
+            Debug.Log(isActive);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Box"))
         {
             PlayerInRange = false;
+            collision.GetComponent<SpriteRenderer>().enabled = true;
+            crystalHolder.GetComponent<SpriteRenderer>().sprite = null;
         }
     }
+
 }
