@@ -8,6 +8,7 @@ TagManager:
   - Spike
   - Box
   - Platform
+  - Bullet
   layers:
   - Default
   - TransparentFX
