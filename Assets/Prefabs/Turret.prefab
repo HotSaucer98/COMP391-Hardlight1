@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 100197463444896583}
   - component: {fileID: 100197463444896580}
   - component: {fileID: 100197463444896581}
-  - component: {fileID: 100197463444896582}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -130,29 +129,3 @@ MonoBehaviour:
   firepoint: {fileID: 100197461798645334}
   bullet: {fileID: 2139338054419778652, guid: af7436b99ae82b24a9d6107206412962, type: 3}
   startinterval: 5
---- !u!61 &100197463444896582
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100197463444896602}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 56.27326}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9, y: 9}
-    newSize: {x: 9, y: 9}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 9, y: 121.54652}
-  m_EdgeRadius: 0
