@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             //deathNoise.PlayOneShot(deathClip, deathVolume);
         }
-        else if (collision.gameObject.tag == "Box")
+        else if (collision.gameObject.tag == "Box" || collision.gameObject.tag == "Ground")
         {
             Destroy(this.gameObject);
         }
