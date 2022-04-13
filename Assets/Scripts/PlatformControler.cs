@@ -21,7 +21,7 @@ public class PlatformControler : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {/*
         if (PlayerInRange)
         {
             if (isActive == false)
@@ -32,7 +32,7 @@ public class PlatformControler : MonoBehaviour
         }else if(!PlayerInRange)
         {
             Deactivate();
-        }
+        }*/
     }
 
     public void Activate()
@@ -40,7 +40,6 @@ public class PlatformControler : MonoBehaviour
         platform.speed = 4;
 
         isActive = true;
-        crystalHolder.GetComponent<SpriteRenderer>().sprite = crystalHolder.GetComponent<SpriteRenderer>().sprite;
         crystalNoise.PlayOneShot(crystalClip, crystalVolume);
     }
 
@@ -48,27 +47,38 @@ public class PlatformControler : MonoBehaviour
     {
         isActive = false;
         platform.speed = 0;
-        crystalHolder.SetActive(false);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Box"))
         {
-            PlayerInRange = true;
             Debug.Log(PlayerInRange);
             collision.GetComponent<SpriteRenderer>().enabled = false;
+            crystalHolder.GetComponent<SpriteRenderer>().sprite = collision.GetComponent<SpriteRenderer>().sprite;
+
+            if (collision.name.Equals(crystalColor))
+            {
+                Activate();
+            }
         }
+
     }
     
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Box") && collision.name.Equals(crystalColor))
+        if (collision.CompareTag("Box"))
         {
-            PlayerInRange = false;
             Debug.Log(PlayerInRange);
             collision.GetComponent<SpriteRenderer>().enabled = true;
+            crystalHolder.GetComponent<SpriteRenderer>().sprite = null;
+
+            if (collision.name.Equals(crystalColor))
+            {
+                Deactivate();
+            }
         }
+
     }
 
 
