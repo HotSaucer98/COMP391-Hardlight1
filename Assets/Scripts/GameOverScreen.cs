@@ -14,6 +14,7 @@ public class GameOverScreen : MonoBehaviour
         if (gameDeath == true)
         {
             deathScreenUI.SetActive(true);
+            Time.timeScale = 0f;
         }
 
     }
@@ -21,10 +22,11 @@ public class GameOverScreen : MonoBehaviour
     {
         
         SceneManager.LoadScene("MainMenu");
-        
+        Time.timeScale = 1f;
     }
     public void Restart()
     {
         Application.LoadLevel("HardlightLevel1");
+        Time.timeScale = 1f;
     }
 }

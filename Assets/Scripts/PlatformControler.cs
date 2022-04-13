@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlatformControler : MonoBehaviour
 {
     public Platforms platform;
+    public AudioSource crystalNoise;
+    public AudioClip crystalClip;
+    public float crystalVolume = 0.5f;
     public string crystalColor = "White";
     private float normalSpeed;
     private bool PlayerInRange = false;
@@ -37,7 +40,8 @@ public class PlatformControler : MonoBehaviour
         platform.speed = 4;
 
         isActive = true;
-        crystalHolder.GetComponent<SpriteRenderer>().sprite = crystalHolder.GetComponent<SpriteRenderer>().sprite; 
+        crystalHolder.GetComponent<SpriteRenderer>().sprite = crystalHolder.GetComponent<SpriteRenderer>().sprite;
+        crystalNoise.PlayOneShot(crystalClip, crystalVolume);
     }
 
     public void Deactivate()

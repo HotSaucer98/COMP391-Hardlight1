@@ -7,7 +7,22 @@ public class PlayerControl : MonoBehaviour
 
     public Animator animator;
     private Rigidbody2D rb2d;
+    public AudioSource deathNoise;
+    public AudioSource jumpNoise;
+    public AudioSource landNoise;
+    public AudioSource walkNoise;
+    public AudioClip deathClip;
+    public AudioClip jumpClip;
+    public AudioClip landClip;
+    public AudioClip walkClip;
 
+
+    public float deathVolume = 0.75f; 
+    public float jumpVolume = 0.5f;
+    public float landVolume = 0.75f;
+    public float walkVolume = 0.5f;
+    public float stepTime = 0.5f;
+    float timer;
     public float horizontalMov;
     public float verticalMov;
     public float speed;
@@ -39,9 +54,18 @@ public class PlayerControl : MonoBehaviour
         {
             isJump = true;
             animator.SetBool("Jump", true);
+            jumpNoise.PlayOneShot(jumpClip, jumpVolume);
         }
 
-
+        if (horizontalMov != 0)
+        {
+            timer += Time.deltaTime;
+            if (timer > stepTime)
+            {
+                walkNoise.PlayOneShot(walkClip, walkVolume);
+                timer = 0;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -75,11 +99,12 @@ public class PlayerControl : MonoBehaviour
 
         facingRight = !facingRight;
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
+            landNoise.PlayOneShot(landClip, landVolume);
             isJumping = false;
             animator.SetBool("Jump", false);
         }
@@ -87,7 +112,7 @@ public class PlayerControl : MonoBehaviour
         else if(collision.gameObject.tag == "Spike")
         {
             FindObjectOfType<GameOverScreen>().GameOver();
-           
+            deathNoise.PlayOneShot(deathClip, deathVolume);
         }
 
     }

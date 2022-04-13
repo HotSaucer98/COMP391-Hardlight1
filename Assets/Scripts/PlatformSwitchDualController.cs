@@ -13,6 +13,9 @@ public class PlatformSwitchDualController : MonoBehaviour
     private bool isActive = false;
     public GameObject crystalHolder;
     public PlatformSwitchDualController Otherswitch;
+    public AudioSource crystalNoise;
+    public AudioClip crystalClip;
+    public float crystalVolume = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,7 @@ public class PlatformSwitchDualController : MonoBehaviour
         if (Otherswitch.isActive == true)
         {
             platform.speed = 2.5f;
+            crystalNoise.PlayOneShot(crystalClip, crystalVolume);
         }
 
     }
