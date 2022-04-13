@@ -115,6 +115,12 @@ public class PlayerControl : MonoBehaviour
             deathNoise.PlayOneShot(deathClip, deathVolume);
         }
 
+        else if(collision.gameObject.tag == "Bullet")
+        {
+            FindObjectOfType<GameOverScreen>().GameOver();
+            deathNoise.PlayOneShot(deathClip, deathVolume);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
