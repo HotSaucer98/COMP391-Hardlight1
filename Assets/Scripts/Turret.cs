@@ -8,6 +8,9 @@ public class Turret : MonoBehaviour
     public  GameObject bullet;
     float interval;
     public float startinterval;
+    public AudioSource shootNoise;
+    public AudioClip shootClip;
+    public float shootVolume = 0.5f;
 
     
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class Turret : MonoBehaviour
         {
             Instantiate(bullet, firepoint.position, firepoint.rotation);
             interval = startinterval;
+            shootNoise.PlayOneShot(shootClip, shootVolume);
         }
         else
         {
