@@ -20,8 +20,16 @@ public class PopUp : MonoBehaviour
         TurnOnMessage();
       }
    }
- 
-   private void TurnOnMessage()
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.name == "Robot")
+        {
+            TurnOnMessage();
+        }
+    }
+
+    private void TurnOnMessage()
    {
       messageCanvas.enabled = true;
    }
