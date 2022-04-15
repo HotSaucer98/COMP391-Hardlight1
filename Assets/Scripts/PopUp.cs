@@ -37,14 +37,16 @@ public class PopUp : MonoBehaviour
    void OnTriggerExit2D(Collider2D other)
    {
       if (other.name == "Robot")
-      {
-        TurnOffMessage();
-      }
+        {
+            TurnOffMessage();
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
    }
  
    private void TurnOffMessage()
    {
-      messageCanvas.enabled = false;
+        messageCanvas.enabled = false;
+      
       //Destroy(this.gameObject, 5.0f);
    }
 }
