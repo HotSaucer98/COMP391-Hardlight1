@@ -29,9 +29,10 @@ public class PlatformSwitchDualController : MonoBehaviour
     {
         if (PlayerInRange)
         {
-            if (isActive == false)
+            if (isActive == true)
             {
                 Activate();
+                Debug.Log("Activated");
             }
 
         }
@@ -45,6 +46,7 @@ public class PlatformSwitchDualController : MonoBehaviour
     {
         if (Otherswitch.isActive == true)
         {
+            Debug.Log("it gave speed");
             platform.speed = 2.5f;
             crystalNoise.PlayOneShot(crystalClip, crystalVolume);
         }
@@ -62,15 +64,21 @@ public class PlatformSwitchDualController : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            PlayerInRange = true;
+
             collision.GetComponent<SpriteRenderer>().enabled = false;
             crystalHolder.GetComponent<SpriteRenderer>().sprite = collision.GetComponent<SpriteRenderer>().sprite;
+
+            if (collision.name.Equals(crystalColor2) || collision.name.Equals(crystalColor1))
+            {
+
+                PlayerInRange = true;
+                isActive = true;
+                Debug.Log(isActive);
+                Debug.Log("playerinrange" + PlayerInRange);
+            }
+
         }
-        if (collision.name.Equals(crystalColor2))
-        {
-            isActive = true;
-            Debug.Log(isActive);
-        }
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)

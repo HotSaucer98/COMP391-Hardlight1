@@ -39,7 +39,7 @@ public class PlatformSwitchSingleController : MonoBehaviour
         }
         else
         {
-            platform.speed = 4;
+            platform.speed = 3;
         }
 
         isActive = true;
